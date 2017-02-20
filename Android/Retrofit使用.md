@@ -1,3 +1,12 @@
+## 初始化
+
+
+baseUrl和@Get("endpoint")/Post("endpoint")的组合方式,重要在于'/'的使用:
+0. 正常使用, baseurl以'/'结尾, endpoint开头不带'/'
+1. 如果endpoint有完整的scheme和host, baseurl会被忽略
+2. 如果endpoint以'/'开头, 只取baseurl的schema和host与endpoint拼接
+3. 如果baseurl不以/结尾, 会忽略最后一个路径后与endpoint拼接
+
 ## get方法
 
 方法注解:
@@ -22,4 +31,3 @@
 1. @Field("") RequestBody param1 : application/x-www-form-urlencoded请求格式专用, 设置参数键值对
 2. @Part("") RequestBody param2 : multipart/form-data请求格式专用, 设置键值对
 3. @PartMap Map<String, Request> param: multipart/form-data请求格式专用, 设置键值对
-
