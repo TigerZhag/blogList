@@ -1,0 +1,4 @@
+# 入门
+1. 只要不存在defer和async属性,<head>标签中javascript标签内脚本(或外部脚本)被执行完毕之前, 不会加载界面, 因此可以放在<body>中页面内容后;
+2. 数据类型: undefined, Null, boolean, Number, String, Object;
+3.

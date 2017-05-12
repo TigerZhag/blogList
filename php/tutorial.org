@@ -1,0 +1,8 @@
+** environment
+   Ubuntu 14.04 + nginx + php
+
+** install
+   installation:  http://php.net/manual/en/install.unix.debian.phpapt-get
+
+** language usage
+***

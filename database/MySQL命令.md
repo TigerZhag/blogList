@@ -17,7 +17,7 @@ eg 2.
 grant select,insert,update,delete on mydb.* to [email=test2@localhost]test2@localhost[/email] identified by "a";
 
 # 数据库操作
-创建：create database <name>;
+创建：create database [if not exists]<name>;
 显示：show databases;
 
 修改编码: 
@@ -25,7 +25,7 @@ grant select,insert,update,delete on mydb.* to [email=test2@localhost]test2@loca
 2. 代码中 jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=gbk
 
 删除数据库
-drop database <name> if exists;
+drop database  if exists <name>;
 
 连接数据库
 use <name>

@@ -1,0 +1,46 @@
+#+TITLE:running a smb server on Ubuntu
+#+AUTHOR: Zhang ShiXin
+
+* 安装
+  大多数unix-like系统中都已默认集成了samba, 在[[https://www.samba.org/][samba主页]]中 也可下载, 如果需要从源码编译, [[https://www.samba.org/samba/docs/man/Samba-HOWTO-Collection/compiling.html][check this]]
+* 配置
+** 配置文件
+   samba的配置存储在smb.conf文件中, 存储目录可以执行 smbd -b | grep smb.conf 查看,一般存储在 \/etc/samba/smb.conf
+   或者 \/usr/local/samba/lib/smb.conf
+** 配置文件语法
+     smb.conf配置文件语法和windows 3.1中的老.ini配置文件语法是一样的,文件由很多个单元组成, 每个单元第一行为单元名,
+   由一对中括号包裹,下面跟着一系列键值对
+     每个单元代表一个共享文件或者一个samba服务的一个元服务, [global]单元比较特殊, 它包含的书samba服务的一些设置,samba
+   支持很多元服务, 每一个都有它特殊的用处, 例如, [homes]是一个让samba为每个用户提供一个共享文件夹的元服务, [printers]
+   元服务是一个提供打印机服务的元服务.
+     每个单元称为一个stanza, global stanza指明了影响其他所有stanza的设置, 配置参数可使用man命令查看, 有些参数只能用
+   在global中, 有些只能用在share或者meta-service stanza中,  还有的都可以使用.
+     一个简单smb.conf文件栗子:
+   #+BEGIN_SRC shell
+[global]
+workgroup = WKG
+netbios name = MYNAME
+
+[share1]
+path = /tmp
+[share2]
+path = /my_shared_folder
+comment = Some random files
+   #+END_SRC
+
+** TDB数据库文件
+     TDB数据库是Samba-3使用的用来存储关键信息的数据库, 存储tdb文件的目录在编译时决定, 可使用 smbd -b | grep PRIVATE_DIR 命令查看,
+   还有一些普通数据,存储目录可使用 smbd -b | grep LOCKDIR 查看
+|----------------+--------------------------------------------------------------------------|
+| <c>            | <c>                                                                      |
+| Name           | Description                                                              |
+|----------------+--------------------------------------------------------------------------|
+| account_policy | Samba/NT account policy settings, includes password expiration settings. |
+|                |                                                                          |
+
+
+* samba进程
+  samba一般由两或三个守护进程组成:
+  1. nmbd :
+  2. smbd :
+  3. winbindd :

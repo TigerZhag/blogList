@@ -1,0 +1,4 @@
+** install
+   Ubuntu: sudo apt-get install nginx
+** configurations
+   simple config file: /etc/nginx/sites-available/default
